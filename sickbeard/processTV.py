@@ -114,6 +114,8 @@ def processDir (dirName, nzbName=None, process_method=None, force=False, is_prio
 
     returnStr += logHelper(u"PostProcessing Files: " + str(files), logger.DEBUG)
     returnStr += logHelper(u"PostProcessing VideoFiles: " + str(videoFiles), logger.DEBUG)
+    returnStr += logHelper(u"PostProcessing RarContent: " + str(rarContent), logger.DEBUG)
+    returnStr += logHelper(u"PostProcessing VideoInRar: " + str(videoInRar), logger.DEBUG)
 
     # If nzbName is set and there's more than one videofile in the folder, files will be lost (overwritten).
     if len(videoFiles) >= 2:
@@ -154,7 +156,7 @@ def processDir (dirName, nzbName=None, process_method=None, force=False, is_prio
 
                 #Delete all file not needed
                 if process_method != "move" or not process_result:
-                    break
+                    continue
     
                 delete_files(processPath, notwantedFiles)
     
